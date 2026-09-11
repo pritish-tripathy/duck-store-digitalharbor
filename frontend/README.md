@@ -1,16 +1,106 @@
-# React + Vite
+# Duck Store Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the Duck Store warehouse management application.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* React
+* Vite
+* JavaScript
+* CSS
+* Fetch API
 
-## React Compiler
+## Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```text
+src/
+├── components/
+│   ├── AddDuckForm.jsx
+│   ├── CreateOrderForm.jsx
+│   ├── DuckTable.jsx
+│   ├── EditDuckForm.jsx
+│   └── OrderResult.jsx
+│
+├── services/
+│   ├── duckService.js
+│   └── orderService.js
+│
+├── App.jsx
+├── App.css
+└── main.jsx
+```
 
-## Expanding the ESLint configuration
+### Components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **AddDuckForm** — adds warehouse inventory.
+* **EditDuckForm** — updates duck price and quantity.
+* **DuckTable** — displays active warehouse inventory and provides edit/delete actions.
+* **CreateOrderForm** — collects order details and requests price calculation.
+* **OrderResult** — displays the calculated package, protection, total, and price breakdown.
+
+### Services
+
+API communication is kept separate from the UI components.
+
+* `duckService.js` — communicates with the duck warehouse APIs.
+* `orderService.js` — communicates with the order API.
+
+## Backend URL
+
+The frontend expects the Spring Boot backend to run on:
+
+```text
+http://localhost:8080
+```
+
+The frontend communicates with:
+
+```text
+GET    /api/ducks
+POST   /api/ducks
+PUT    /api/ducks/{id}
+DELETE /api/ducks/{id}
+
+POST   /api/orders
+```
+
+## Running the Frontend
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will normally be available at:
+
+```text
+http://localhost:5173
+```
+
+## Production Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Notes
+
+* `node_modules/` is not included in the submission. It can be recreated using `npm install`.
+* `package-lock.json` should be retained.
+* The frontend does not access the database directly.
+* Pricing calculations are performed by the backend.
