@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/duck_store
+    username: duckstore
+    password: duckstore
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
